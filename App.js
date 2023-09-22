@@ -4,7 +4,6 @@ import { StatusBar } from "expo-status-bar";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-
 import MealsScreen from "./screens/MealsScreen";
 import CategoriesScreen from "./screens/CategoriesScreen";
 
@@ -15,12 +14,23 @@ export default function App() {
     <>
       <StatusBar style="inverted" />
       {/* <LinearGradient colors={["#1d3d55", "#2c9961"]}> */}
-        <NavigationContainer>
-          <Stack.Navigator>
-            <Stack.Screen name="Categories" component={CategoriesScreen} />
-            <Stack.Screen name="Meals" component={MealsScreen} />
-          </Stack.Navigator>
-        </NavigationContainer>
+      <NavigationContainer>
+        <Stack.Navigator
+          screenOptions={{
+            headerStyle: { backgroundColor: "#308e5e" },
+            contentStyle: { backgroundColor: "#1d3d55" },
+          }}
+        >
+          <Stack.Screen
+            name="Categories"
+            component={CategoriesScreen}
+            options={{
+              title: "All Categories",
+            }}
+          />
+          <Stack.Screen name="Meals" component={MealsScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
       {/* </LinearGradient> */}
     </>
   );
