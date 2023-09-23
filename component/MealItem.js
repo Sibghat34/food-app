@@ -7,16 +7,23 @@ import {
   Platform,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import MealMainDetail from "./MealMainDetail";
 
-function MealItem({ id, title, imageUrl, duration, complexity, affordability }) {
-
+function MealItem({
+  id,
+  title,
+  imageUrl,
+  duration,
+  complexity,
+  affordability,
+}) {
   const navigation = useNavigation();
 
-  function selectMealItemHandler(){
-      navigation.navigate('MealDetail', {
-        mealId: id,
-      });
-  };
+  function selectMealItemHandler() {
+    navigation.navigate("MealDetail", {
+      mealId: id,
+    });
+  }
 
   return (
     <View style={styles.mealItem}>
@@ -29,11 +36,11 @@ function MealItem({ id, title, imageUrl, duration, complexity, affordability }) 
           <Image source={{ uri: imageUrl }} style={styles.image} />
           <Text style={styles.title}>{title}</Text>
         </View>
-        <View style={styles.details}>
-          <Text style={styles.detailItems}>{duration}m</Text>
-          <Text style={styles.detailItems}>{complexity.toUpperCase()}</Text>
-          <Text style={styles.detailItems}>{affordability.toUpperCase()}</Text>
-        </View>
+        <MealMainDetail
+          duration={duration}
+          complexity={complexity}
+          affordability={affordability}
+        />
       </Pressable>
     </View>
   );
@@ -62,15 +69,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     margin: 5,
   },
-  details: {
-    margin: 10,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  detailItems: {
-    marginHorizontal: 5,
-  },
+
   iosPress: {
     opacity: 0.7,
   },
