@@ -1,13 +1,15 @@
 import { Image, Text, View, StyleSheet, ScrollView } from "react-native";
-
+import { useLayoutEffect } from "react";
 import { MEALS } from "../data/dummy-data";
 import MealMainDetail from "../component/MealMainDetail";
 import Subtitle from "../component/MealDetail/Subtitle";
 import List from "../component/MealDetail/List";
 
-function MealDetail({ route }) {
+function MealDetail({ route, navigation }) {
   const mealId = route.params.mealId;
   const selectedMeal = MEALS.find((meal) => meal.id === mealId);
+
+
 
   return (
     <ScrollView>
