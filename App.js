@@ -3,12 +3,15 @@ import { LinearGradient } from "expo-linear-gradient";
 import { StatusBar } from "expo-status-bar";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import {createDrawerNavigator} from '@react-navigation/drawer'
+import { Text } from "react-native";
 
 import MealsScreen from "./screens/MealsScreen";
 import CategoriesScreen from "./screens/CategoriesScreen";
 import MealDetail from "./screens/MealDetail";
 
 const Stack = createNativeStackNavigator();
+const Drawer = createDrawerNavigator();
 
 export default function App() {
   return (
@@ -21,7 +24,7 @@ export default function App() {
             headerStyle: { backgroundColor: "#308e5e" },
             contentStyle: { backgroundColor: "#1d3d55" },
           }}
-        >
+          >
           <Stack.Screen
             name="Categories"
             component={CategoriesScreen}
@@ -30,7 +33,7 @@ export default function App() {
             }}
           />
           <Stack.Screen name="Meals" component={MealsScreen} />
-          <Stack.Screen name="MealDetail" component={MealDetail} />
+          <Stack.Screen name="MealDetail" component={MealDetail}/>
         </Stack.Navigator>
       </NavigationContainer>
       {/* </LinearGradient> */}
