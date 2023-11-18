@@ -13,21 +13,28 @@ import Subtitle from "../component/MealDetail/Subtitle";
 import List from "../component/MealDetail/List";
 import IconButton from "../component/IconButton";
 import { FavContext } from "../store/context/fav-context";
+import { useDispatch, useSelector } from "react-redux";
+import {addFavorite, removeFavorite} from '../store/redux/favorites';
 
 function MealDetail({ route, navigation }) {
   const mealId = route.params.mealId;
   const selectedMeal = MEALS.find((meal) => meal.id === mealId);
 
-  const favMealsContext = useContext(FavContext);
+  // const favMealsContext = useContext(FavContext);
 
-  const favMeals = favMealsContext.ids.includes(mealId);
+  const favMealsIds = useSelector((state) => state.favMeals.ids);
+  const dispatch = useDispatch();
+
+  const favMeals = favMealsIds.ids.includes(mealId);
 
   function changeFavStatusHandler() {
     if(favMeals){
-      favMealsContext.removeFavorite(mealId);
+      // favMealsContext.removeFavorite(mealId);
+      dispatch(removeFavorite({id: mealId}));
     }
     else{
-      favMealsContext.addFavorite(mealId);
+      // favMealsContext.addFavorite(mealId);
+      dispatch(addFavorite({id: mealId}));
     }
   }
 
